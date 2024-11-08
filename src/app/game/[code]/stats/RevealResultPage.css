@@ -1,0 +1,42 @@
+.result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 30vh;
+    height: auto; /* Set height to auto to allow content expansion */
+    overflow-y: hidden; /* Prevent the container from having its own scroll */
+    overflow-x: hidden;
+    position: relative;
+}
+
+.top-results-container, .other-results-container {
+    width: 100%; /* Make sure they take the full width */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align the individual result */
+}
+
+.result-number {
+    font-size: 5rem;
+    font-weight: bold;
+    color: #333;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+  
+.result-number.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+  
+.confetti-container {
+    overflow-x: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
