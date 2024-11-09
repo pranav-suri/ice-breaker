@@ -43,26 +43,29 @@ Create a `.env` file in the `server` directory with the  variables defined in .e
       We've combined the both the scripts together so both the server and client can be started with this one command.
 
 ## Playing the game
-1. **Add yourself as an admin**
+
+1. **Add yourself as an admin**  
+   ![Admin image](public/images/admin.png)
+
 2. **A game code will be displayed onscreen once you're an admin**
 
-![Admin image](public/images/admin.png)
 3. **Let other players enter the code**
-4. **Players will create their avatar and enter some information about themselves**
 
-![Avatar image](public/images/avatar.png)
-4. **Start the game**
-5. **All players will be randomly assigned another player**
+4. **Players will create their avatar and enter some information about themselves**  
+   ![Avatar image](public/images/avatar.png)
 
-![Player image](public/images/player.png)
-6. **Find the player in the room and click a photo with them**
-7. **The admin can end the game from his panel**
-8. **Once the game ends, all players can view their photos and gallery can also be displayed on admin page**
+5. **Start the game**
 
-![Score image](public/images/score.png)
+6. **All players will be randomly assigned another player**  
+   ![Player image](public/images/player.png)
 
+7. **Find the player in the room and click a photo with them**
 
+8. **The admin can end the game from their panel**
+
+9. **Once the game ends, all players can view their photos, and a gallery can also be displayed on the admin page**  
+   ![Score image](public/images/score.png)
+
+---
 
 Participants can join the game, find others, and upload selfies, all through the web interface.
-
-
