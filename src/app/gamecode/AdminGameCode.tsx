@@ -101,7 +101,7 @@ function AdminGameCode() {
 
   const handleDeleteUser = async (userId: string) => {
     try {
-      await axios.delete(`/api/game/${gameCode?.code}`, {
+      await axios.delete(`/api/user/game/${gameCode?.code}/exit`, {
         params: { userId },
       });
       setUsers(users.filter((user) => user.id !== userId));
