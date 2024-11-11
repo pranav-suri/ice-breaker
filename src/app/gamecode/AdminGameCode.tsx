@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 function AdminGameCode() {
   const [gameCode, setGameCode] = React.useState<GameCode | null>();
@@ -27,7 +27,7 @@ function AdminGameCode() {
     "started" | "ended" | "waiting"
   >("waiting");
   const [date, setDate] = React.useState(new Date());
-  const [users, setUsers] = React.useState<any>();
+  const [users, setUsers] = useState<any>();
   const router = useRouter();
 
   const gameCodeActions = async (action: "start" | "end") => {
@@ -99,6 +99,17 @@ function AdminGameCode() {
     | any[]
     | undefined;
 
+  const handleDeleteUser = async (userId: string) => {
+    try {
+      await axios.delete(`/api/game/${gameCode?.code}`, {
+        params: { userId },
+      });
+      setUsers(users.filter((user) => user.id !== userId));
+    } catch (error) {
+      console.error("Failed to delete user:", error);
+    }
+  };
+
   return (
     <main>
       <NavBar />
@@ -164,8 +175,8 @@ function AdminGameCode() {
                   onClick={() => {
                     gameCodeActions("start");
                   }}
-                  disabled={false}
-                  // disabled={gameState === "started"}
+                  // disabled={false}
+                  disabled={gameState === "started"}
                 >
                   Start Game
                 </Button>
@@ -178,8 +189,8 @@ function AdminGameCode() {
                   onClick={() => {
                     gameCodeActions("end");
                   }}
-                  disabled={false}
-                  // disabled={gameState !== "started"}
+                  // disabled={false}
+                  disabled={gameState !== "started"}
                 >
                   End Game
                 </Button>
@@ -201,7 +212,17 @@ function AdminGameCode() {
                   color="primary"
                   onClick={() => router.push(`/game/${gameCode?.code}/gallery`)}
                 >
-                 Photo-Booth
+                  Photo-Booth
+                </Button>
+              </Grid>
+              <Grid item xs={12}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  onClick={() => router.push(`/game/${gameCode?.code}/genchat`)}
+                >
+                  AI Assistant
                 </Button>
               </Grid>
             </Grid>
@@ -218,10 +239,21 @@ function AdminGameCode() {
               p: 2,
             }}
           >
-            {userNames?.map((user, index) => (
-              <Typography key={index} variant="h5">
-                {user}
-              </Typography>
+            {users?.map((user, index: number) => (
+              <Grid container key={index} alignItems="center" spacing={2}>
+                <Grid item>
+                  <Typography variant="h5">{user.name}</Typography>
+                </Grid>
+                <Grid item>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => handleDeleteUser(user.id)}
+                  >
+                    Delete
+                  </Button>
+                </Grid>
+              </Grid>
             ))}
           </Paper>
         </Box>
