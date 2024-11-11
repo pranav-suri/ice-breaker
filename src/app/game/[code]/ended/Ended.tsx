@@ -41,6 +41,14 @@ export default function Page({
           >
             View your collage
           </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            href={`/game/${code}/genchat`}
+            onClick={() => setInteractive(false)}
+          >
+            AI Assistant
+          </Button>
         </div>
       </section>
     </>
